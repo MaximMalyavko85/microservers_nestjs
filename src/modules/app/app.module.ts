@@ -16,13 +16,6 @@ import { SharedModule } from '@lib/shared';
     ConfigModule.forRoot({isGlobal: true}),
     SharedModule,
     ProvidersModule,
-    // ConfigModule.forRoot( // forRoot - global view
-    //   new ConfigService().getConfig()  // for .env
-    // ),
-    // TypeOrmModule.forRootAsync({
-    //   useFactory: (config: CS)=> new Connector().connect(config),
-    //   inject: [CS],
-    // }),
     //AuthModule
   ], // сюда должны быть импортированы другие модули, чтобы получилось дерево зависимостей
   controllers: [], // сюда все контроллеры, которые относятся именно к этому модулю
