@@ -10,5 +10,7 @@ export class DomainError extends Error {
         )});
 
         super(`Errors: ${_errors.join('; ')}${message ? `. Message: ${message}` : ''}`);
+
+        this.name = DomainError.name;
     }
 }

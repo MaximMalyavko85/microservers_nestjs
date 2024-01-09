@@ -6,6 +6,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { AuthModule } from '../auth/auth.module';
 import { ProvidersModule } from '@lib/providers/providers.module';
+import { SharedModule } from '@lib/shared';
 
 
 
@@ -13,6 +14,7 @@ import { ProvidersModule } from '@lib/providers/providers.module';
 @Module({
   imports: [
     ConfigModule.forRoot({isGlobal: true}),
+    SharedModule,
     ProvidersModule,
     // ConfigModule.forRoot( // forRoot - global view
     //   new ConfigService().getConfig()  // for .env
