@@ -7,5 +7,4 @@ export class Token {
 
     @Column()
     email: string;
-
 }

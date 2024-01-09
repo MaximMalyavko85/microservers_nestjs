@@ -5,7 +5,7 @@ import { ConfigModule, ConfigService as CS } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { AuthModule } from '../auth/auth.module';
-import { ProvidersModule } from '@lib/providers';
+import { ProvidersModule } from '@lib/providers/providers.module';
 
 
 
