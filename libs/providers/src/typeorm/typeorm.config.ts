@@ -12,25 +12,27 @@ const IS_PROD: boolean = NODE_ENV === 'prod';
 config({path: join(process.cwd(), 'config', `.env.${NODE_ENV}`)});
 
 const options = (): DataSourceOptions => {
-    const url = configService.get('POSTGRE_HOST');
+    const host     = configService.get('POSTGRE_HOST');
+    const port     =  configService.get('POSTGRE_PORT');
+    const database = configService.get('POSTGRE_DB');
+    const username = configService.get('POSTGRE_USER');
+    const password = configService.get('POSTGRE_PASSWORD');
     
-    if (!url) throw new Error('Database URL is empty');
-    
-    console.log(NODE_ENV, IS_PROD, url)
+    if (!host || !port || !database || !username || !password) throw new Error('Database options was skiped.');
 
     return {
-        type     : 'postgres',
-        host     : configService.get('POSTGRE_HOST'),
-        port     : configService.get('POSTGRE_PORT'),
-        database : configService.get('POSTGRE_DB'),
-        username : configService.get('POSTGRE_USER'),
-        password : configService.get('POSTGRE_PASSWORD'),
-        schema   : 'public',
-        logging  : !IS_PROD,
-        entities: [],
-        migrations: [join(process.cwd()), 'migration', '**', '*migration.ts'],
-        migrationsRun: true,
-        migrationsTableName: 'migrations'
+        host,
+        port, 
+        database,
+        username, 
+        password,
+        type                : 'postgres',
+        schema              : 'public',
+        logging             : !IS_PROD,
+        entities            : [join(process.cwd(), 'dist', 'libs', 'entities', '**', '*.entity.{ts, js}')],
+        migrations          : [join(process.cwd()), 'migration', '**', '*migration.ts'],
+        migrationsRun       : true,
+        migrationsTableName : 'migrations'
     }
 } 
 
