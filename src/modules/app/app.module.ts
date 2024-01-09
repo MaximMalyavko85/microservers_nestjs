@@ -5,20 +5,23 @@ import { ConfigModule, ConfigService as CS } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { AuthModule } from '../auth/auth.module';
+import { ProvidersModule } from '@lib/providers';
 
 
 
 //module - для разделения все на части
 @Module({
   imports: [
-    ConfigModule.forRoot( // forRoot - global view
-      new ConfigService().getConfig()  // for .env
-    ),
+    ConfigModule.forRoot({isGlobal: true}),
+    ProvidersModule,
+    // ConfigModule.forRoot( // forRoot - global view
+    //   new ConfigService().getConfig()  // for .env
+    // ),
     // TypeOrmModule.forRootAsync({
     //   useFactory: (config: CS)=> new Connector().connect(config),
     //   inject: [CS],
     // }),
-    AuthModule
+    //AuthModule
   ], // сюда должны быть импортированы другие модули, чтобы получилось дерево зависимостей
   controllers: [], // сюда все контроллеры, которые относятся именно к этому модулю
   providers: [], // все, что не является контроллером, но, нам надо положить его в дерево зависимостей
