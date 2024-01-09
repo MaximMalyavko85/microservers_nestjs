@@ -1,2 +1,2 @@
 export * from './post.interface';
-export * from './post.aggregate;'
+export * from './post.aggregate';
