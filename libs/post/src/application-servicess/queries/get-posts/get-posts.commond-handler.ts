@@ -10,9 +10,9 @@ export class GetPostsQueryHandler implements IQueryHandler<GetPostsQuery, [PostA
 
     constructor(private readonly postRepository: PostRepository){}
 
-    async execute(query: GetPostsQuery): Promise<[[PostAggregate], number]> {
+    async execute({pagination}: GetPostsQuery): Promise<[[PostAggregate], number]> {
         const [data, count] = await this.postRepository
-        .findAll()
+        .findAll(pagination)
         .catch(err => {
             this.logger.error(err);
 
