@@ -13,11 +13,11 @@ export class DeletePostCommandHandler implements ICommandHandler<DeletePostComma
     
     async execute({id}: DeletePostCommand): Promise<boolean> {
         const existPost = await this.postRepository
-        .findOne(id)
-        .catch(err => {
-            this.logger.error(err);
-            return null as PostAggregate;
-        });
+            .findOne(id)
+            .catch(err => {
+                this.logger.error(err);
+                return null as PostAggregate;
+            });
 
         if (!existPost) throw new BadRequestException(`POst by id ${id} not found`);
 
