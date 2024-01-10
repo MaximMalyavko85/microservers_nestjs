@@ -1,5 +1,5 @@
 import { IQueryHandler, QueryHandler } from "@nestjs/cqrs";
-import { GetPostsQuery } from "./get-posts.commond";
+import { GetPostsQuery } from "./get-posts.query";
 import { PostAggregate } from "@lib/post/domain";
 import { Logger } from "@nestjs/common";
 import { PostRepository } from "@lib/post/providers";
