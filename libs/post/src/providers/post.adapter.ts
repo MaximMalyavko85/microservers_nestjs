@@ -88,5 +88,4 @@ export class PostAdapter implements PostRepository {
 
         return !!result;
     };
-
 }

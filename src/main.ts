@@ -4,9 +4,6 @@ import { ConfigService } from '@nestjs/config';
 import { SwaggerModule } from "@nestjs/swagger";
 import { ConfigService as LocalConfig } from '../config';
 import * as cookieParser from 'cookie-parser';
-import { HttpExceptionFilter } from './common/exception/http-exception';
-import { NestMicroserviceOptions } from '@nestjs/common/interfaces/microservices/nest-microservice-options.interface';
-import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 
 const whitelist = ['http://localhost:3001'];
 
@@ -26,7 +23,7 @@ async function bootstrap() {
 
   const configService = app.get(ConfigService);
   
-  app.useGlobalFilters(new HttpExceptionFilter());
+  //app.useGlobalFilters(new HttpExceptionFilter());
   app.setGlobalPrefix('api/v1');
   // app.connectMicroservice({
   //   transport: Transport.TCP,
