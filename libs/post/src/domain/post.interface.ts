@@ -4,7 +4,7 @@ export interface IPost {
     title: string;
     message: string;
     authorId: string;
-    published: boolean;
+    isPublished: boolean;
     createdAt: string;
     upatedAt: string;
 }

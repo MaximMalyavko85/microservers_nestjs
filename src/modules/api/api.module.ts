@@ -2,7 +2,6 @@ import { Module } from '@nestjs/common';
 import { ControllersModule } from './controllers';
 
 @Module({
-  controllers: [],
-  imports: []
+  imports: [ControllersModule],
 })
 export class ApiModule {}

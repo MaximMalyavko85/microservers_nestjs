@@ -59,6 +59,7 @@
     }
   },
   "compilerOptions": {
-    "webpack": true
+    "webpack": true,
+    "deleteOutDir": false
   }
 }

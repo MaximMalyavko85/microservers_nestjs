@@ -1,13 +1,26 @@
 import { PostFacade } from '@lib/post/application-servicess';
 import { Body, Controller, Get, Post } from '@nestjs/common';
 import { CreatePostDto } from './dto';
+import { CurrentUser, ICurrentUser } from '@lib/auth';
+import { randomStringGenerator } from '@nestjs/common/utils/random-string-generator.util';
 
 @Controller('post')
 export class PostController {
-    constructor(private readonly postFacade: PostFacade){}
+     constructor(private readonly postFacade: PostFacade){}
 
     @Post()
-    createPost(@Body() createPostDto: CreatePostDto){
-        this.postFacade.commands.createPost(createPostDto);
+    createPost(
+        //@CurrentUser() user: ICurrentUser, 
+        @Body() createPostDto: CreatePostDto
+    ){
+
+        console.log({ ...createPostDto,
+            authorId: randomStringGenerator()})
+
+        this.postFacade.commands.createPost({
+            ...createPostDto,
+            authorId: randomStringGenerator(),
+            //authorId: user.userId
+        });
     }
 }

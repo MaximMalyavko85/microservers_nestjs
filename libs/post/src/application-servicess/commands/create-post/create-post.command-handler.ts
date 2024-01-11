@@ -11,14 +11,16 @@ export class CreatePostCommandHandler implements ICommandHandler<CreatePostComma
     ) {}
     
     async execute({post}: CreatePostCommand): Promise<PostAggregate> {
+        console.log("----->", post)
         const postAggregate=  PostAggregate.create(post);
 
-        const createdPost = await this.postRepository
-        .save(postAggregate)
-        .catch(err => {
-            throw new BadRequestException(err);
-        });
 
-        return createdPost;
+        // const createdPost = await this.postRepository
+        // .save(postAggregate)
+        // .catch(err => {
+        //     throw new BadRequestException(err);
+        // });
+
+        return postAggregate;
     }
 }

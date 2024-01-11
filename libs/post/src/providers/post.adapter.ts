@@ -16,13 +16,9 @@ export class PostAdapter implements PostRepository {
     ) {}
 
     async save(post: IPost): Promise<PostAggregate> {
-        if (post?.id){
-            const existPost = await this.findOne(post.id);
+        const existPost = await this.findOne(post.id);
 
-            if (!existPost) {
-                throw new NotFoundException(`Post by id ${post?.id} not found`)
-            }
-
+        if (existPost) {
             const { id, ...toUpdate } = post;
             await this.postRepository.update({id}, toUpdate);
             
